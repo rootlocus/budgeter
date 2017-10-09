@@ -1,0 +1,26 @@
+
+<h1>Hello, Rails!</h1>
+<%= link_to 'Main Group', controller: 'group' %>
+</br>
+<%= link_to 'New Group', new_group_path %>
+</br>
+<h1>Listing groups</h1>
+ 
+<table>
+  <tr>
+    <th>GroupId</th>
+    <th>GroupName</th>
+  </tr>
+ 
+  <% @groups.each do |group| %>
+    <tr>
+      <td><%= group.id %></td>
+      <td><%= group.groupname %></td>
+      <td><%= link_to 'Show', group_path(group) %></td>
+      <td><%= link_to 'Edit', edit_group_path(group) %></td>
+      <td><%= link_to 'Destroy', group_path(group),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

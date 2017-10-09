@@ -1,0 +1,24 @@
+<%= form_with(model: [ @group, @group.expenses.build ], local: true) do |form| %>
+  <p>
+    <%# form.label :expenseid %><br>
+    <%# form.text_field :expenseid %>
+  </p>
+  <p>
+    <%# form.label :groupid %><br>
+    <%# form.text_area :groupid %>
+  </p>
+   <p>
+    <%# form.label :userid %><br>
+    <%# form.text_area :userid %>
+  </p>
+
+  <p>
+    <%= form.label :expense %><br>
+    <%= form.text_area :expense %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  expenseid: MyString
+  groupid: MyString
+  expense: 9.99
+  group: one
+
+two:
+  expenseid: MyString
+  groupid: MyString
+  expense: 9.99
+  group: two

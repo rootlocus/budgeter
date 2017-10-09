@@ -1,0 +1,35 @@
+<h1>Group#edit</h1>
+<p>Find me in app/views/group/edit.html.erb</p>
+
+
+<h1>Edit group</h1>
+<%= form_with(model: @group) do |form| %>  
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@group.errors.count, "error") %> prohibited
+        this group from being saved:
+      </h2>
+      <ul>
+        <% @group.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :groupid %><br>
+    <%= form.text_field :groupid %>
+  </p>
+
+  <p>
+    <%= form.label :groupname %><br>
+    <%= form.text_area :groupname %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+<%= link_to 'Back', group_index_path %>
