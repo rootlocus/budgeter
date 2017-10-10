@@ -4,6 +4,8 @@ class ExpensesController < ApplicationController
 
   def create
     @group = Group.find(params[:group_id])
+   # @expense = @group.expenses.create(expense_params)
+    @userid = current_user.id
     @expense = @group.expenses.create(expense_params)
     redirect_to group_path(@group)
   end
@@ -17,6 +19,6 @@ class ExpensesController < ApplicationController
  
   private
     def expense_params
-      params.require(:expense).permit( :expenseid , :groupid , :userid ,:expense)
+      params.require(:expense).permit( :expense , :user_id )
     end
 end
