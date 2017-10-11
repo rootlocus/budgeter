@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'user_groups/new'
+
+  get 'user_groups/create'
+
+  get 'user_groups/destroy'
+
   devise_for :users
   get 'home/index'
 
@@ -9,12 +15,14 @@ Rails.application.routes.draw do
 #  post 'group/create'
 #  get 'group/destroy'
    resources :group
-#   resources :user do
-#      resources :group , :expenses
-#   end
    resources :group do
       resources :expenses
-   end 
+#      resources :usergroups
+   end
+
+   resources :users do
+      resources :user_groups
+   end
    root 'home#index'
 #   root 'group#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
