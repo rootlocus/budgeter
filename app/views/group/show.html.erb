@@ -1,15 +1,18 @@
 <h1>Group#show</h1>
 <p>Find me in app/views/group/show.html.erb</p>
 
-<p>
-  <strong>GroupID:</strong>
-  <%= @group.id %>
-</p>
- 
-<p>
-  <strong>GroupName:</strong>
-  <%= @group.groupname %>
-</p>
+<table style="border: 1px solid black;">
+  <tr>
+     <th>GroupID:</th>
+     <th>GroupName:</th>
+  </tr>
+  <tr>
+     <td><%= @group.id %></td>
+     <td><%= @group.groupname %></td>
+  </tr>
+</table>
+<h2>Invite User: </h2> 
+<%= render 'user_groups/form' %>
 
 <h2>Expenses</h2>
 <table style="border: 1px solid black;">
@@ -24,7 +27,5 @@
 
 <h2>Add a expense:</h2>
 <%= render 'expenses/form' %>
-<h2>Invite User: </h2>
-<%= render 'user_groups/form' %>
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', group_index_path %>

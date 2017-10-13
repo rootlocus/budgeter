@@ -1,13 +1,11 @@
-class ExpensesController < ApplicationController
-
+class UserGroupsController < ApplicationController
   http_basic_authenticate_with name: "eric", password: "1234", only: :destroy
 
+  def new
+  end
   def create
-    @userid = current_user.id
-    @group = Group.find(params[:group_id])
-    if is_number?(params.require(:expense)[:expense])
-       @expense = @group.expenses.create(expense_params)
-    end
+    @group = Group.find(params.require(:user_group)[:group_id])
+    @usergroup = UserGroup.create(usergroup_params)
     redirect_to group_path(@group)
   end
 
@@ -18,12 +16,12 @@ class ExpensesController < ApplicationController
     redirect_to group_path(@group)
   end
 
-  def is_number? string
-    true if Float(string) rescue false
-  end
- 
   private
     def expense_params
       params.require(:expense).permit( :expense , :user_id )
     end
+    def usergroup_params
+      params.require(:user_group).permit( :user_id , :group_id )
+    end
+
 end

@@ -1,7 +1,7 @@
 <%= form_with(model: [ @group, @group.expenses.build ], local: true) do |form| %>
   <p>
     <%= form.label :expense %><br>
-    <%= form.text_area :expense %>
+    <%= form.text_field :expense %>
   </p>
     <%= form.text_area :user_id , :value => current_user.id , style: "#{'display:none'}"%>
   <p>

@@ -22,10 +22,10 @@ class GroupController < ApplicationController
 
 #this is the post of new 
   def create
-#    @group = Group.new(group_params)  
     @group =  current_user.group.build(group_params)
     #if group.save is true , saved , else reload new again
     if @group.save
+      @usergroup = UserGroup.create( :user_id => current_user.id , :group_id => @group.id)
       redirect_to @group
     else
       render 'new'
@@ -44,8 +44,22 @@ class GroupController < ApplicationController
 
   def destroy
      @group = Group.find(params[:id])
-     @group.destroy
- 
+     
+     begin
+        @usergroup = UserGroup.find_by_group_id(params[:id])
+        if @usergroup.present?
+           @usergroup.destroy
+        end
+     end while @usergroup.present?
+     if @group.present?
+        @group.destroy
+     end
+#     @usergroup = UserGroup.find_by_group_id(params[:id])
+#     if @usergroup.present?
+#        @usergroup.destroy
+#     end
+
+#     @usergroup = UserGroup.create( :user_id => current_user.id , :group_id => @group.id) 
      redirect_to group_index_path
   end
 
