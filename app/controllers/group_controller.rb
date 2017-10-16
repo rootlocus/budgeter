@@ -4,10 +4,12 @@ class GroupController < ApplicationController
   before_action :authenticate_user!, except: [:index ,:show]
   def index
       @groups = Group.all
+      @usergroups = UserGroup.all
       #render json: {status: 'SUCCESS' , message: 'Loaded all group' , data:groups}, status: :ok
   end
 
   def show
+    @usergroups = UserGroup.all
     @group = Group.find(params[:id])
   end
 
@@ -45,12 +47,12 @@ class GroupController < ApplicationController
   def destroy
      @group = Group.find(params[:id])
      
-     begin
-        @usergroup = UserGroup.find_by_group_id(params[:id])
-        if @usergroup.present?
-           @usergroup.destroy
-        end
-     end while @usergroup.present?
+#     begin
+#        @usergroup = UserGroup.find_by_group_id(params[:id])
+#        if @usergroup.present?
+#           @usergroup.destroy
+#        end
+#     end while @usergroup.present? 
      if @group.present?
         @group.destroy
      end

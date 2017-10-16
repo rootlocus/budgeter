@@ -6,9 +6,29 @@
   </tr>
     <%= form.text_area :group_id ,:value => @group.id , style: "#{'display:none'}" %>
   <tr>
-    <%= form.submit %>
+    <%= form.submit "Invite"%>
   </tr>
   </table>
   </p>
 <% end %>
+
+<table>
+  <tr>
+    <th>Group Name</th>
+    <th>Email</th>
+  </tr>
+
+  <% @usergroups.each do |usergroup| %>
+    <% if @group.id == usergroup.group_id %>
+    <tr>
+      <td><%= usergroup.group.groupname %> <strong>(<%= usergroup.group_id %>)</strong></td>
+      <td><%= User.find(usergroup.user_id).email %> <strong>#<%= usergroup.user_id %></strong></td>
+      <%# if user_signed_in? %>
+      <td><%= link_to 'Remove', [usergroup.group , usergroup],
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+   <% end %>
+   <% end %>
+    </tr>
+</table>
 

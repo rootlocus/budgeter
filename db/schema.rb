@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010161726) do
+ActiveRecord::Schema.define(version: 20171013141254) do
 
   create_table "expenses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "expenseid"
     t.string "groupid"
-    t.decimal "expense", precision: 10
+    t.decimal "expense", precision: 10, scale: 2
     t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20171010161726) do
     t.string "groupname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "userid"
     t.string "user_id"
   end
 
@@ -39,15 +38,6 @@ ActiveRecord::Schema.define(version: 20171010161726) do
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_user_groups_on_group_id"
     t.index ["user_id"], name: "index_user_groups_on_user_id"
-  end
-
-  create_table "usergroups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.bigint "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_usergroups_on_group_id"
-    t.index ["user_id"], name: "index_usergroups_on_user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -70,6 +60,4 @@ ActiveRecord::Schema.define(version: 20171010161726) do
   add_foreign_key "expenses", "groups"
   add_foreign_key "user_groups", "groups"
   add_foreign_key "user_groups", "users"
-  add_foreign_key "usergroups", "groups"
-  add_foreign_key "usergroups", "users"
 end

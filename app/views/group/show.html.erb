@@ -3,18 +3,19 @@
 
 <table style="border: 1px solid black;">
   <tr>
-     <th>GroupID:</th>
      <th>GroupName:</th>
   </tr>
   <tr>
-     <td><%= @group.id %></td>
-     <td><%= @group.groupname %></td>
+     <td><%= @group.groupname %><strong>(<%= @group.id %>)</strong></td>
   </tr>
 </table>
 <h2>Invite User: </h2> 
 <%= render 'user_groups/form' %>
 
 <h2>Expenses</h2>
+<% if @group.expenses.count == 0 %>
+   <p>No Expenses...</p>
+<% else %>
 <table style="border: 1px solid black;">
    <tr>
         <th>ExpenseID</th>
@@ -24,7 +25,7 @@
    </tr>
    <%= render @group.expenses %>
 </table>
-
+<%end %>
 <h2>Add a expense:</h2>
 <%= render 'expenses/form' %>
 <%= link_to 'Edit', edit_group_path(@group) %> |
